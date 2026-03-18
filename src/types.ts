@@ -25,9 +25,7 @@ export interface RankingEntry {
 }
 
 // Configuration
-export const API_BASE_URL = (import.meta.env.VITE_API_URL === '/api' || !import.meta.env.VITE_API_URL) 
-  ? 'http://localhost:8080' 
-  : import.meta.env.VITE_API_URL;
+export const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 export const USE_MOCK_API = import.meta.env.VITE_USE_MOCK === 'true'; // Default to false, only true if explicitly set to 'true'
 
 // Helper to get auth header
