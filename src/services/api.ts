@@ -88,7 +88,17 @@ export const api = {
       body: JSON.stringify({ name, email, password }),
     });
     if (!res.ok) throw new Error('Falha no registro');
-    const newUser = await res.json();
+    
+    const text = await res.text();
+    let newUser: any;
+    try {
+      newUser = JSON.parse(text);
+    } catch {
+      // Backend returned plain text like "Usuário criado com id=1"
+      const idMatch = text.match(/id=(\d+)/);
+      const id = idMatch ? parseInt(idMatch[1]) : 0;
+      newUser = { id, name, email, createdAt: new Date().toISOString() };
+    }
     return !newUser.id && newUser.iduser ? { ...newUser, id: newUser.iduser } : newUser;
   },
 
