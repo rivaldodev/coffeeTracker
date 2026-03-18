@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  coffee-tracker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:8080
+    ports:
+      - "80:80"
+    restart: always
+    labels:
+      - "coolify.managed=true"
