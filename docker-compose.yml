@@ -8,8 +8,8 @@ services:
       args:
         - VITE_API_URL=/api
         - BACKEND_URL=https://coffee.rivs.com.br
-    ports:
-      - "80:80"
+    expose:
+      - "80"
     restart: always
     labels:
       - "coolify.managed=true"
