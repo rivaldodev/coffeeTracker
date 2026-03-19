@@ -7,9 +7,15 @@ services:
       dockerfile: Dockerfile
       args:
         - VITE_API_URL=/api
-        - BACKEND_URL=https://coffee.rivs.com.br
+        - BACKEND_URL=http://api:8080
     expose:
       - "80"
     restart: always
+    networks:
+      - coolify
     labels:
       - "coolify.managed=true"
+
+networks:
+  coolify:
+    external: true
